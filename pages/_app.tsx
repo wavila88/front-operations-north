@@ -4,6 +4,8 @@ import 'tailwindcss/tailwind.css';
 import React from 'react'
 import { Windmill } from '@roketid/windmill-react-ui'
 import type { AppProps } from 'next/app'
+import { Provider } from 'react-redux';
+import { store } from '../store/store';
 
 function MyApp({ Component, pageProps }: AppProps) {
   // suppress useLayoutEffect warnings when running outside a browser
@@ -11,7 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Windmill usePreferences={true}>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </Windmill>
   )
 }

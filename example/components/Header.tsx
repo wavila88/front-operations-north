@@ -1,5 +1,6 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import SidebarContext from 'context/SidebarContext'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   SearchIcon,
   MoonIcon,
@@ -11,14 +12,23 @@ import {
   OutlineLogoutIcon,
 } from 'icons'
 import { Avatar, Badge, Input, Dropdown, DropdownItem, WindmillContext } from '@roketid/windmill-react-ui'
+import { logout } from 'store/actions/securityActions';
+import { validateSession } from 'utils/generalUtils'
+
+
 
 function Header() {
+  const dispatch = useDispatch();
   const { mode, toggleMode } = useContext(WindmillContext)
   const { toggleSidebar } = useContext(SidebarContext)
 
   const [isNotificationsMenuOpen, setIsNotificationsMenuOpen] = useState(false)
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
+  const session = useSelector<any>(state => state.UtilsReducer.userData?.token);
 
+  useEffect(() => {
+    validateSession(session);
+  }, [])
   function handleNotificationsClick() {
     setIsNotificationsMenuOpen(!isNotificationsMenuOpen)
   }
@@ -128,9 +138,9 @@ function Header() {
                 <OutlineCogIcon className="w-4 h-4 mr-3" aria-hidden="true" />
                 <span>Settings</span>
               </DropdownItem>
-              <DropdownItem onClick={() => alert('Log out!')}>
+              <DropdownItem onClick={() => dispatch(logout() as any)}>
                 <OutlineLogoutIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                <span>Log out</span>
+                <span >Log out</span>
               </DropdownItem>
             </Dropdown>
           </li>

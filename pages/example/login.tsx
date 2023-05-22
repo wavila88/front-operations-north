@@ -1,14 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import { Label, Input, Button, WindmillContext } from '@roketid/windmill-react-ui'
-import { GithubIcon, TwitterIcon } from 'icons'
+import { useDispatch } from 'react-redux';
+import { startSession } from 'store/actions/securityActions'
+import { LoginForm } from 'utils/types';
 
 function LoginPage() {
+  const dispatch = useDispatch();
   const { mode } = useContext(WindmillContext)
   const imgSource = mode === 'dark' ? '/assets/img/login-office-dark.jpeg' : '/assets/img/login-office.jpeg'
+  const [loginForm, setLoginForm] = useState<LoginForm>({ userName: '', password: '' })
+  const [errorMessage, setErrorMessage] = useState('')
 
+
+  const login = async () => {
+    const response = await dispatch(startSession(loginForm) as any);
+    setErrorMessage(response)
+  }
   return (
     <div className='flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900'>
       <div className='flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800'>
@@ -28,11 +38,11 @@ function LoginPage() {
                 Login
               </h1>
               <Label>
-                <span>Email</span>
+                <span>userName</span>
                 <Input
                   className='mt-1'
-                  type='email'
-                  placeholder='john@doe.com'
+                  placeholder='userName'
+                  onChange={(e) => setLoginForm({ ...loginForm, userName: e.target.value })}
                 />
               </Label>
 
@@ -41,36 +51,26 @@ function LoginPage() {
                 <Input
                   className='mt-1'
                   type='password'
+                  onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
                   placeholder='***************'
                 />
               </Label>
 
-              <Link href='/example' passHref={true}>
-                <Button className='mt-4' block>
-                  Log in
-                </Button>
-              </Link>
 
+              <Button className='mt-4' onClick={() => login()}>
+                Log in
+              </Button>
+              <p className='text-sm font-medium text-purple-600 dark:text-red-400 hover:underline'>{errorMessage}</p>
               <hr className='my-8' />
-
-              <Button block layout='outline'>
-                <GithubIcon className='w-4 h-4 mr-2' aria-hidden='true' />
-                Github
-              </Button>
-              <Button className='mt-4' block layout='outline'>
-                <TwitterIcon className='w-4 h-4 mr-2' aria-hidden='true' />
-                Twitter
-              </Button>
-
               <p className='mt-4'>
-                <Link href='/example/forgot-password'>
+                <Link href=''>
                   <a className='text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline'>
                     Forgot your password?
                   </a>
                 </Link>
               </p>
               <p className='mt-1'>
-                <Link href='/example/create-account'>
+                <Link href=''>
                   <a className='text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline'>
                     Create account
                   </a>
