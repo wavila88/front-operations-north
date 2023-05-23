@@ -1,4 +1,5 @@
 import { RequestParams } from "./types";
+import Router from "next/router";
 
 /**
  * Reusable request.
@@ -32,6 +33,10 @@ export const makeRequest = async ({
     }
 
     if (!response.ok) {
+      if (response.status === 401) {
+        Router.push("/example/login");
+      }
+
       const errorMessage =
         responseBody && responseBody.message
           ? responseBody.message

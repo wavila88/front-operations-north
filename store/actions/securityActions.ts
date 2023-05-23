@@ -21,7 +21,7 @@ export const startSession = (user: LoginForm) => async (dispatch: any) => {
         payload: response.body,
       });
 
-      Router.push("/example/forms");
+      Router.push("/example/records");
       await dispatch(action);
     }
   } catch (error) {
