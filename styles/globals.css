@@ -14,3 +14,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.ml-2 {
+  margin-right: 1.5rem;
+}
+
+.success {
+  color: #0dab0d;
+}

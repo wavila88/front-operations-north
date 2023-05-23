@@ -35,3 +35,21 @@ export type TypeGetRecordsRequest = {
   pageNumber: number;
   order: TypeSort;
 };
+
+export type OperationForm = {
+  operation: RegexValidation<{
+    id: number;
+    type: string;
+  }>;
+  number1?: RegexValidation<number>;
+  number2?: RegexValidation<number>;
+};
+
+/**
+ * Using Generics for validation
+ */
+export type RegexValidation<T> = {
+  element: T;
+  isInvalid: boolean;
+  feedBack: string;
+};

@@ -2,7 +2,6 @@ export const filterObjects = (
   objects: Array<any>,
   searchTerm: string
 ): Array<any> => {
-  debugger;
   const filteredObjects = objects.filter((object: any) => {
     // Verificar si hay coincidencia en cada uno de los campos
     const operation = object.operation.type

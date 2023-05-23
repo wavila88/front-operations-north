@@ -1,6 +1,6 @@
 import config from "utils/config";
 import { makeRequest } from "utils/https";
-import { TypeGetRecordsRequest } from "utils/types";
+import { OperationForm, TypeGetRecordsRequest } from "utils/types";
 
 export const SET_USERS_TABLE = "SET_USERS_TABLE";
 
