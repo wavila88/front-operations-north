@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import UtilsReducer from "./reducers/securityReducer";
 import recordsReducer from "./reducers/recordsReducer";
+import operationsReducer from "./reducers/operationsReducer ";
 
 export const store = configureStore({
   reducer: {
     UtilsReducer,
     recordsReducer,
+    operationsReducer,
   },
 });
 

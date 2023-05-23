@@ -1,18 +1,24 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
 import { Input, HelperText, Label, Select, Textarea, Button } from '@roketid/windmill-react-ui'
-import CTA from 'example/components/CTA'
+import { useSelector, useDispatch } from 'react-redux'
 import PageTitle from 'example/components/Typography/PageTitle'
-import SectionTitle from 'example/components/Typography/SectionTitle'
-
 import Layout from 'example/containers/Layout'
-import { MailIcon } from 'icons'
+import { getOperationsBalance } from 'store/actions/operationsActions'
 
 function Forms() {
+
+  const dispatch = useDispatch();
+  const operationsInfo = useSelector<any>(state => state.operationsReducer?.data)
+
+
+  useEffect(() => {
+    dispatch(getOperationsBalance() as any)
+  }, [])
+
   return (
     <Layout>
       <PageTitle>Execute operation</PageTitle>
-
+      <Label> <span className="ml-2">Balance {(operationsInfo as any)?.balance}</span> </Label>
       <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <div className="mt-4">
           <Label>Operation Type</Label>
@@ -42,6 +48,7 @@ function Forms() {
               <span className="ml-2">Random number</span>
             </Label>
           </div>
+          <Label>Cost Operation: 20</Label>
 
         </div>
         <br></br>
@@ -59,12 +66,8 @@ function Forms() {
         <br></br>
         <Button className="mb-2" >
           Add Record
-
-
-
         </Button>
       </div>
-
     </Layout>
 
 
