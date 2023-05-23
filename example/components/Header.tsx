@@ -98,7 +98,7 @@ function Header() {
               isOpen={isProfileMenuOpen}
               onClose={() => setIsProfileMenuOpen(false)}
             >
-              <DropdownItem onClick={() => dispatch(logout() as any)}>
+              <DropdownItem id={'dropDown'} onClick={() => dispatch(logout() as any)}>
                 <OutlineLogoutIcon className="w-4 h-4 mr-3" aria-hidden="true" />
                 <span >Log out</span>
               </DropdownItem>

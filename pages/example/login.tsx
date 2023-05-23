@@ -41,6 +41,7 @@ function LoginPage() {
                 <span>userName</span>
                 <Input
                   className='mt-1'
+                  id='username'
                   placeholder='userName'
                   onChange={(e) => setLoginForm({ ...loginForm, userName: e.target.value })}
                 />
@@ -50,6 +51,7 @@ function LoginPage() {
                 <span>Password</span>
                 <Input
                   className='mt-1'
+                  id='password'
                   type='password'
                   onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
                   placeholder='***************'

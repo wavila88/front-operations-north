@@ -99,7 +99,7 @@ function Tables() {
           <Input type="text" onChange={handleSearch} placeholder="Search..." />
         </div>
         <div style={{ maxWidth: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-          <Button className="mb-2" onClick={() => Router.push('/example/forms')}>
+          <Button id='addRecord' className="mb-2" onClick={() => Router.push('/example/forms')}>
             Add Record
 
 
