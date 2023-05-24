@@ -1,1 +1,1 @@
-web: next dev -p 3000
+web: npm run start
