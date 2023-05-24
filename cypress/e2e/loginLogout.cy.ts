@@ -1,3 +1,4 @@
+export {};
 describe("login logout, add operation", () => {
   it("visit local host and login and log out", () => {
     cy.visit("http://localhost:3000/");

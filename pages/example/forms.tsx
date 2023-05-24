@@ -89,7 +89,7 @@ function Forms() {
         <div className="mt-4">
           <Label>Operation Type</Label>
           <div className="mt-2">
-            {operationsInfo && (operationsInfo as any)?.operations.map((operation) => (
+            {operationsInfo && (operationsInfo as any)?.operations.map((operation: any) => (
               operation.type !== 'initial_value' && <Label radio>
                 <Input type="radio" id={operation.type} onClick={(e) => updatedOperationForm(e, operation)} name="operation" />
                 <span className="ml-2">{`${capitalizeFirstLetter(operation.type.replace('_', ' '))} cost: ${operation.cost}`}</span>

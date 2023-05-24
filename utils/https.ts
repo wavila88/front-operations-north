@@ -49,7 +49,7 @@ export const makeRequest = async ({
     }
 
     return responseBody || {};
-  } catch (error) {
+  } catch (error: any) {
     return {
       error: true,
       message: "Error al realizar la solicitud: " + error.message,

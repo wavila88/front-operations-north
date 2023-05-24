@@ -124,7 +124,7 @@ function Tables() {
             </tr>
           </TableHeader>
           <TableBody>
-            {displayRecords && (displayRecords as any).length > 0 && (displayRecords as any).map((record, i) => (
+            {displayRecords && (displayRecords as any).length > 0 && (displayRecords as any).map((record: any, i: number) => (
               <TableRow key={i}>
                 <TableCell>
                   <div className="flex items-center text-sm">
